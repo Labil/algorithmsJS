@@ -16,13 +16,7 @@ Quickunion.prototype.find = function(p, q){
 	var pid = this.nodes[p].parentID;
 	var qid = this.nodes[q].parentID;
 
-	var pRoot = this.getroot(pid);
-	var qRoot = this.getroot(qid);
-
-	if(pRoot == qRoot)
-		return true;
-	else
-		return false;
+	return this.getroot(pid) == this.getroot(qid);
 };
 
 Quickunion.prototype.getroot = function(p) {
@@ -37,9 +31,10 @@ Quickunion.prototype.getroot = function(p) {
 Quickunion.prototype.union = function(p, q){
 	//might not be worth checking if there already is a link, as find is more expensive than union (?)
 	//if(this.find(p, q)) return;
-
-	//Attaches directly to q. Will be changed in refactoring of this algorithm to avoid deep tree structures
-	this.nodes[p].parentID = q;
+	var pRoot = this.getroot(p);
+	var qRoot = this.getroot(q);
+	
+	this.nodes[pRoot].parentID = qRoot;
 };
 
 var nodes = new Quickunion(10);
