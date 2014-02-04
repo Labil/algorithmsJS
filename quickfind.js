@@ -1,3 +1,8 @@
+// Quickfind makes the find operation inexpensive, but the union
+// is too expensive. Takes N^2 array accesses to process the 
+// sequence of N union commands on N objects.
+// Quadratic time is much too slow for larger problems because
+// they don't scale with technology.
 var Quickfind = function(size){
 	this.nodes = []
 	for(var i = 0; i < size; i++){
