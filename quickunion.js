@@ -24,7 +24,9 @@ Quickunion.prototype.getroot = function(p) {
 		console.log("root id: " + p)
 		return p;
 	}
-
+	//alternative:
+	//while(this.nodes[p].parentID != p) p = this.nodes[p].parentID;
+	//return p;
 	this.getroot(this.nodes[p].parentID);
 };
 
@@ -33,7 +35,7 @@ Quickunion.prototype.union = function(p, q){
 	//if(this.find(p, q)) return;
 	var pRoot = this.getroot(p);
 	var qRoot = this.getroot(q);
-	
+
 	this.nodes[pRoot].parentID = qRoot;
 };
 
